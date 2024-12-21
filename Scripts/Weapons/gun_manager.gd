@@ -13,7 +13,7 @@ func _ready():
 func _process(delta):
 	match get_parent().face_state:
 		-1:
-			print("meow")
+			gun_side.visibility_changed = 
 		0:
 			print("mrrp meow mrreow")
 		1:
