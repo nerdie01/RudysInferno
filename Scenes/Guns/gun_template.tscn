@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dohpr3i0uogqq"]
+[gd_scene load_steps=4 format=3 uid="uid://dohpr3i0uogqq"]
 
 [ext_resource type="Script" path="res://Scripts/Weapons/gun_manager.gd" id="1_b1yhs"]
+[ext_resource type="Texture2D" uid="uid://bxgkpnr2d7x46" path="res://Prototyping/gun.webp" id="2_lg2g0"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sii1p"]
 
@@ -11,15 +12,16 @@ gun_front = NodePath("front")
 gun_back = NodePath("back")
 
 [node name="side" type="Sprite2D" parent="."]
-scale = Vector2(40, 10)
-texture = SubResource("PlaceholderTexture2D_sii1p")
+z_index = 1
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("2_lg2g0")
 
-[node name="back" type="Sprite2D" parent="."]
+[node name="front" type="Sprite2D" parent="."]
 position = Vector2(15, 0)
 scale = Vector2(10, 10)
 texture = SubResource("PlaceholderTexture2D_sii1p")
 
-[node name="front" type="Sprite2D" parent="."]
+[node name="back" type="Sprite2D" parent="."]
 position = Vector2(-15, 0)
 scale = Vector2(10, 10)
 texture = SubResource("PlaceholderTexture2D_sii1p")

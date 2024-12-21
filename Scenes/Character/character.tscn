@@ -8,6 +8,9 @@
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_d2h85")
+light_attack_boost = 4.0
+heavy_attack_boost = -3.0
+light_atk_thres = 150
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

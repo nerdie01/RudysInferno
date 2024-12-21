@@ -1,22 +1,20 @@
 extends Node2D
 
-@export var gun_side : Sprite2D
-@export var gun_front : Sprite2D
-@export var gun_back : Sprite2D
+@export var gun : Sprite2D
+@export var gun_side_z_index_offset := 2
+
+var orig_gun_zi : int
+var orig_gun_scale : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	orig_gun_zi = gun.z_index
+	orig_gun_scale = gun.scale.x
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	match get_parent().face_state:
-		-1:
-			gun_side.visibility_changed = 
-		0:
-			print("mrrp meow mrreow")
-		1:
-			print(":3")
-		2:
-			print("mrreow")
+	if get_parent().face_state == 0:
+		gun.z_index = orig_gun_zi
+		gun.scale.x = orig_gun_scale
+	else:
+		gun.z_index = orig_gun_zi

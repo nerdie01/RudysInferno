@@ -1,34 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbui1c7u106he"]
+[gd_scene load_steps=4 format=3 uid="uid://cbui1c7u106he"]
 
 [ext_resource type="PackedScene" uid="uid://bmvu7jasqhpnv" path="res://Scenes/Character/character.tscn" id="1_42rra"]
-[ext_resource type="PackedScene" uid="uid://dohpr3i0uogqq" path="res://Scenes/Guns/gun_template.tscn" id="2_onq7j"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lsd0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7r37o"]
-size = Vector2(40, 40)
 
 [node name="Scene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Character" parent="." instance=ExtResource("1_42rra")]
-speed = 225
-dash_multiplier = 8.0
-dash_time = 0
-lerp_intensity = 5000
+scale = Vector2(0.998686, 1)
+dash_multiplier = 4.0
+light_attack_boost = 150.0
+heavy_attack_boost = -100.0
 
-[node name="Gun" parent="Character" instance=ExtResource("2_onq7j")]
+[node name="Dummy" type="Node" parent="."]
 
-[node name="Node" type="Node" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Node"]
+[node name="Sprite2D" type="Sprite2D" parent="Dummy"]
 position = Vector2(40, 0)
-scale = Vector2(40, 40)
+scale = Vector2(20, 20)
 texture = SubResource("PlaceholderTexture2D_lsd0n")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Node"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Dummy"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy/StaticBody2D"]
 position = Vector2(40, 0)
 shape = SubResource("RectangleShape2D_7r37o")
