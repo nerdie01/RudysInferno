@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var heavy_attack_boost_time := 5.0
 @export var light_atk_thres := 100
 @export var lerp_intensity := 1000.0
-@export var sugar_rush = 5.0
+@export var sugar_rush = 5
 @export var crouch_speed_reduction = 0.75
 
 var angle_to_character : float
