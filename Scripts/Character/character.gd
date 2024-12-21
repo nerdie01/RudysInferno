@@ -36,7 +36,6 @@ func _physics_process(delta):
 		t0 = Time.get_ticks_msec()
 		print(t0)
 	if Input.is_action_just_released("attack"):
-		print("hi")
 		# if mouse was pressed for long enough, do heavy attack
 		var dt = Time.get_ticks_msec() - t0
 		if dt < light_atk_thres:

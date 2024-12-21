@@ -25,6 +25,6 @@ texture = SubResource("PlaceholderTexture2D_lsd0n")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Dummy"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy/StaticBody2D" groups=["mobs"]]
 position = Vector2(40, 0)
 shape = SubResource("RectangleShape2D_7r37o")
