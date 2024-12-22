@@ -1,30 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbui1c7u106he"]
+[gd_scene load_steps=5 format=3 uid="uid://cbui1c7u106he"]
 
+[ext_resource type="Script" path="res://Scripts/Camera/camera.gd" id="1_0y8vf"]
 [ext_resource type="PackedScene" uid="uid://bmvu7jasqhpnv" path="res://Scenes/Character/character.tscn" id="1_42rra"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lsd0n"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r37o"]
+[ext_resource type="PackedScene" uid="uid://dtk4twbmrpdjj" path="res://Scenes/NPC/friendly.tscn" id="3_mrdya"]
+[ext_resource type="Script" path="res://Scripts/scene_manager.gd" id="4_5dgwi"]
 
 [node name="Scene" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+zoom = Vector2(2, 2)
+script = ExtResource("1_0y8vf")
+target = NodePath("../Character")
 
 [node name="Character" parent="." instance=ExtResource("1_42rra")]
 scale = Vector2(0.998686, 1)
 dash_multiplier = 4.0
-light_attack_boost = 150.0
-heavy_attack_boost = -100.0
 
-[node name="Dummy" type="Node" parent="."]
+[node name="Node" type="Node" parent="."]
+script = ExtResource("4_5dgwi")
 
-[node name="Sprite2D" type="Sprite2D" parent="Dummy"]
-position = Vector2(40, 0)
-scale = Vector2(20, 20)
-texture = SubResource("PlaceholderTexture2D_lsd0n")
+[node name="Friendly" parent="." instance=ExtResource("3_mrdya")]
+position = Vector2(61, 0)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Dummy"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy/StaticBody2D" groups=["mobs"]]
-position = Vector2(40, 0)
-shape = SubResource("RectangleShape2D_7r37o")
+[node name="Friendlier" parent="." instance=ExtResource("3_mrdya")]
+position = Vector2(-54, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxgkpnr2d7x46"
-path="res://.godot/imported/gun.webp-b107ec9760870c30031307edc0e44666.ctex"
+uid="uid://bqgjhkbodqm5g"
+path="res://.godot/imported/speech-bubble.bmp-7108ea960f1cc07622b5fc4c9d468e4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Prototyping/gun.webp"
-dest_files=["res://.godot/imported/gun.webp-b107ec9760870c30031307edc0e44666.ctex"]
+source_file="res://Art Assets/UI/speech-bubble.bmp"
+dest_files=["res://.godot/imported/speech-bubble.bmp-7108ea960f1cc07622b5fc4c9d468e4c.ctex"]
 
 [params]
 

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtk4twbmrpdjj"]
+
+[ext_resource type="Script" path="res://Scripts/NPC/dialogue.gd" id="1_8souh"]
+[ext_resource type="Texture2D" uid="uid://bqgjhkbodqm5g" path="res://Art Assets/UI/speech-bubble.bmp" id="2_3sho4"]
+[ext_resource type="Script" path="res://Scenes/NPC/normalizing_force.gd" id="2_coodi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r37o"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lsd0n"]
+
+[node name="GenericEnemy" type="Node2D"]
+script = ExtResource("1_8souh")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." groups=["enemy"]]
+gravity_scale = 0.0
+script = ExtResource("2_coodi")
+k = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_7r37o")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(3.8147e-06, 0)
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_lsd0n")
+
+[node name="DialogueBubble" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(0, -24)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_3sho4")

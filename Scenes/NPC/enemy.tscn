@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn0f2p2u77m72"]
+
+[ext_resource type="Script" path="res://Scripts/NPC/dialogue.gd" id="1_d78se"]
+[ext_resource type="Texture2D" uid="uid://bqgjhkbodqm5g" path="res://Art Assets/UI/speech-bubble.bmp" id="2_5kxk1"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lsd0n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r37o"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_d78se")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.8147e-06, 0)
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_lsd0n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["enemy"]]
+position = Vector2(-40, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(40, 0)
+shape = SubResource("RectangleShape2D_7r37o")
+
+[node name="DialogueBubble" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_5kxk1")
