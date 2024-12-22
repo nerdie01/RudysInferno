@@ -28,3 +28,5 @@ texture = SubResource("PlaceholderTexture2D_lsd0n")
 position = Vector2(0, -24)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_3sho4")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
