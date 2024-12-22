@@ -7,14 +7,15 @@ extends CharacterBody2D
 @export var light_atk_boost := 1.25
 @export var light_atk_boost_time := 5.0
 @export var light_atk_time = 1.0
+@export var light_atk_force = 1.0
 
 @export var heavy_atk_boost := -0.25
 @export var heavy_atk_boost_time := 5.0
 @export var heavy_atk_time = 1.0
+@export var heavy_atk_force = 2.0
 
 @export var atk_col_shape : CollisionShape2D
 @export var atk_thres := 150
-@export var knockback := 1
 
 @export var lerp_intensity := 1000.0
 @export var n_dash = 5
@@ -24,8 +25,8 @@ extends CharacterBody2D
 
 var angle_to_character : float
 var face_state : int = 0
+var atk_state : int = 0
 var t0 : float
-var is_atking : bool = false
 
 func _ready():
 	pass
@@ -50,17 +51,17 @@ func _physics_process(delta):
 	if Input.is_action_just_released("attack"):
 		# if mouse was pressed for long enough, do heavy attack
 		var dt = Time.get_ticks_msec() - t0
-		if !is_atking:
+		if !atk_state:
 			if dt < atk_thres:
 				velocity = light_atk_boost * char_to_mouse_vec.normalized() + velocity
 				velocity = velocity.move_toward(dir_vec, delta * light_atk_boost_time)
 				print("Light atk at t = ", t0, ", delta t = ", dt, ")")
-				await do_attack(light_hitbox_params, light_atk_time)
+				await do_attack(light_hitbox_params, light_atk_time, 1)
 			else:
 				velocity = heavy_atk_boost * char_to_mouse_vec.normalized() + velocity
 				velocity = velocity.move_toward(dir_vec, delta * heavy_atk_boost_time)
 				print("Heavy atk at t = ", t0, ", delta t = ", dt, ")")
-				await do_attack(heavy_hitbox_params, heavy_atk_time)
+				await do_attack(heavy_hitbox_params, heavy_atk_time, 2)
 
 
 	angle_to_character = atan2(-char_to_mouse_vec.y, char_to_mouse_vec.x)
@@ -74,8 +75,10 @@ func _physics_process(delta):
 	if (-5*PI/8 <= angle_to_character && angle_to_character < -PI/8):
 		face_state = 0;
 
-func do_attack(hitbox, time):
-	is_atking = true
+func do_attack(hitbox, time, atk_type=1):
+	atk_state = atk_type
+
+	await get_tree().create_timer(0.1).timeout
 
 	atk_col_shape.shape.extents = hitbox[0]
 	atk_col_shape.position = Vector2(
@@ -86,8 +89,14 @@ func do_attack(hitbox, time):
 	await get_tree().create_timer(time).timeout
 
 	atk_col_shape.shape.extents = Vector2.ZERO
-	is_atking = false
+	atk_state = 0
 
 func _on_hit_box_body_entered(body):
 	if body.is_in_group("enemy"):
-		body.apply_central_impulse(knockback * get_local_mouse_position())
+		match atk_state:
+			0:
+				pass
+			1:
+				body.apply_central_impulse(light_atk_force * get_local_mouse_position())
+			2:
+				body.apply_central_impulse(heavy_atk_force * get_local_mouse_position())
